@@ -11,7 +11,8 @@
         @csrf
         <input type="text" name="name" id ="name"><br>
         <select name="teacher" id="teacher">
-            @foreach ($teachers as $key => $teacher)
+            @foreach ($teachers as $key => 
+            $teacher)
             <option value = "{{$key}}">{{$teacher}}</option>
             @endforeach
         </select>
