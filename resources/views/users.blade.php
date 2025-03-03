@@ -1,52 +1,52 @@
 @extends('layouts.app')
-@section('content')
+@section('userList')
    <div class="container mt-4">
-    <h1>Teacher list App</h1><br>
+    <h1>Users list App</h1><br>
         <div class="offset-md-2 col-md-8">
-            <!-- New Teacher Card -->
+            <!-- New Users Card -->
             <div class="card"> 
-                <!-- Update teacher name -->
-                @if (isset($teacher))
+                <!-- Update Users name -->
+                @if (isset($user))
                 <div class="card-header">
-                Update Teachers 
+                Update Users 
                 </div>
                 <div class="card-body">
-                    <!-- Update Teacher Form -->
-                    <form action="{{url('update')}}" method="POST">
+                    <!-- Update Users Form -->
+                    <form action="{{url('updateusers')}}" method="POST">
                         @csrf
-                        <input type="hidden" name="id" value="{{$teacher ->id}}">
+                        <input type="hidden" name="id" value="{{$user ->id}}">
                         <!-- teacher name -->
                         <div class="mb-3">
-                            <label for="Teacher-name" class="form-label">Teacher</label>
-                            <input type="text" name="name" id="Teacher-name" class="form-control" value="{{$teacher ->name  }}" >
+                            <label for="User-name" class="form-label">User</label>
+                            <input type="text" name="name" id="User-name" class="form-control" value="{{$user ->name  }}" >
                         </div>
 
-                        <!-- Update teacher button -->
+                        <!-- Update user button -->
                         <div>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-plus me-2"></i>Update Teacher
+                                <i class="fa fa-plus me-2"></i>Update User
                             </button>
                         </div>
                     </form>
                 </div>
                 @else
                 <div class="card-header">
-                    New Teachers
+                    New Users
                 </div>
                 <div class="card-body">
-                    <!-- New Teacher Form -->
-                    <form action="create" method="POST">
+                    <!-- New user Form -->
+                    <form action="createusers" method="POST">
                         @csrf
-                        <!-- teacher name -->
+                        <!-- user name -->
                         <div class="mb-3">
-                            <label for="Teacher-name" class="form-label">Teacher</label>
-                            <input type="text" name="name" id="Teacher-name" class="form-control" placeholder="Enter a new Teacher">
+                            <label for="User-name" class="form-label">User</label>
+                            <input type="text" name="name" id="User-name" class="form-control" placeholder="Enter a new User">
                         </div>
 
-                        <!-- add teacher button -->
+                        <!-- add user button -->
                         <div>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-plus me-2"></i>Add Teacher
+                                <i class="fa fa-plus me-2"></i>Add User
                             </button>
                         </div>
                     </form>
@@ -56,28 +56,28 @@
 
             <div class="card mt-4">
                 <div class="card-header">
-                    Current Teacher
+                    Current User
                 </div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Teacher</th>
+                                <th>User</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($teachers as $teacher)
+                            @foreach ($users as $user)
                             <tr>
-                                <td> {{$teacher->name}} </td>
+                                <td> {{$user->name}} </td>
                                 <td>
-                                    <form action="/delete/{{$teacher -> id}}" method="POST" class="d-inline">
+                                    <form action="/deleteusers/{{$user -> id}}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fa fa-trash me-2"></i>Delete
                                         </button>
                                     </form>
-                                    <form action="/edit/{{$teacher -> id}}" method="POST" class="d-inline">
+                                    <form action="/editusers/{{$user -> id}}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-info">
                                             <i class="fa fa-info me-2"></i>Edit
