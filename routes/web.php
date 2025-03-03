@@ -43,8 +43,10 @@ Route::get('app',function(){
 });
 
 // users route
-Route::get('/users' , [UserController::class,'index']);
-Route::post('/createusers', [UserController::class , 'creatusers']);
-Route::post('/deleteusers/{id}',[UserController::class, 'destroyusers']);
-Route::post('/editusers/{id}', [UserController::class, 'editusers']);
-Route::post('/updateusers',  [UserController::class, 'updateusers']);
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users' ,'index');
+    Route::post('/createusers', 'creatusers');
+    Route::post('/deleteusers/{id}','destroyusers');
+    Route::post('/editusers/{id}', 'editusers');
+    Route::post('/updateusers', 'updateusers');
+});
